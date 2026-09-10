@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- ============================================================ -->
+    <!-- GOOGLE ANALYTICS                                             -->
+    <!-- ============================================================ -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EP4WJYRN0Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EP4WJYRN0Q');
+    </script>
+
+    <!-- ============================================================ -->
+    <!-- META E TÍTULO                                                -->
+    <!-- ============================================================ -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Carregando...</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="btn-voltar">← Voltar</a>
+
+        <div class="header" id="headerMateria">
+            <h1 id="tituloMateria">📘 Carregando...</h1>
+            <div class="subtitle" id="subtituloMateria">Aguarde...</div>
+        </div>
+
+        <div class="materias-grid" id="topicosGrid"></div>
+
+        <div class="explicacao-box" id="explicacaoBox">
+            <h2 id="explicacaoTitulo">📖 Escolha um tópico</h2>
+            <div class="conteudo" id="explicacaoConteudo">
+                <p style="text-align: center; color: #4d627c;">
+                    👆 Clique em um tópico acima para ver a explicação
+                </p>
+            </div>
+        </div>
+
+        <div class="simulado-area">
+            <button class="btn-simulado" id="gerarSimuladoBtn">
+                <span>📝</span> Gerar Simulado
+            </button>
+            <span class="contador-simulado" id="contadorSimulado">🎯 Carregando...</span>
+        </div>
+
+        <div id="simuladoContainer" class="simulado-container hide">
+            <div id="simuladoRender"></div>
+            <button class="btn-pular" id="pularNaoRespondidaBtn" style="display: none;">
+                ⏭️ Ir para questão não respondida
+            </button>
+            <button class="btn-corrigir" id="corrigirBtn">🔍 Corrigir Simulado</button>
+            <button class="gabarito-btn secundario" id="novoSimuladoBtn">🔄 Novo simulado</button>
+        </div>
+
+        <div class="footer" id="footerMateria"></div>
+    </div>
+
+    <script>
+        (async function() {
+            const params = new URLSearchParams(window.location.search);
+            const materiaId = params.get('m') || 'ingles';
+
+            console.log('🔍 Carregando matéria:', materiaId);
+
+            // ============================================================
+            // ENVIA EVENTO PARA O GOOGLE ANALYTICS
+            // ============================================================
+            if (typeof gtag === 'function') {
+                gtag('event', 'abrir_materia', {
+                    'materia': materiaId,
+                    'pagina': window.location.pathname
+                });
+            }
+
+            function carregarScript(src) {
+                return new Promise((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.src = src;
+                    script.onload = () => {
+                        console.log('✅ Script carregado:', src);
+                        resolve();
+                    };
+                    script.onerror = () => {
+                        console.error('❌ Erro ao carregar:', src);
+                        reject(new Error('Falha ao carregar ' + src));
+                    };
+                    document.body.appendChild(script);
+                });
+            }
+
+            try {
+                await carregarScript(`data/${materiaId}.js`);
+
+                if (!window.MATERIA_ATUAL) {
+                    throw new Error('MATERIA_ATUAL não foi definida');
+                }
+
+                console.log('✅ Matéria carregada:', window.MATERIA_ATUAL.nome);
+
+                await carregarScript('js/engine.js');
+
+                if (typeof window.iniciarMateria !== 'function') {
+                    throw new Error('iniciarMateria não está disponível');
+                }
+
+                console.log('✅ Motor carregado');
+
+                window.iniciarMateria(window.MATERIA_ATUAL);
+
+            } catch (erro) {
+                console.error('❌ Erro:', erro);
+                document.getElementById('tituloMateria').textContent = '❌ Erro ao carregar';
+                document.getElementById('subtituloMateria').textContent = 
+                    'Matéria "' + materiaId + '" não encontrada.';
+            }
+        })();
+    </script>
+</body>
+</html>
