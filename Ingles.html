@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Aulão Inglês · 8º ano</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: #f0f4fa;
+            min-height: 100vh;
+            padding: 16px 12px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 520px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(145deg, #0f1a3a, #1a2d5a);
+            color: white;
+            padding: 22px 20px;
+            border-radius: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: "📚";
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            font-size: 4rem;
+            opacity: 0.1;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .header h1 small {
+            font-size: 0.9rem;
+            font-weight: 400;
+            opacity: 0.85;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .header .subtitle {
+            margin-top: 8px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            background: rgba(255, 255, 255, 0.12);
+            padding: 8px 14px;
+            border-radius: 40px;
+            display: inline-block;
+        }
+
+        .materias-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+            justify-content: center;
+        }
+
+        .btn-materia {
+            flex: 1 0 calc(50% - 8px);
+            min-width: 120px;
+            background: white;
+            border: none;
+            border-radius: 60px;
+            padding: 14px 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #1a2d5a;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+            border: 2px solid #e8edf5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            background: #ffffff;
+        }
+
+        .btn-materia:active {
+            transform: scale(0.95);
+        }
+
+        .btn-materia.ativo {
+            background: #1a2d5a;
+            color: white;
+            border-color: #1a2d5a;
+            box-shadow: 0 6px 16px rgba(26, 45, 90, 0.3);
+        }
+
+        .explicacao-box {
+            background: white;
+            border-radius: 28px;
+            padding: 24px 20px;
+            margin-bottom: 28px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid #eef2f7;
+            min-height: 200px;
+        }
+
+        .explicacao-box h2 {
+            font-size: 1.5rem;
+            color: #0f1a3a;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 3px solid #ffb347;
+            padding-bottom: 12px;
+        }
+
+        .explicacao-box .conteudo {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #1f2b3e;
+        }
+
+        .explicacao-box .conteudo p {
+            margin-bottom: 12px;
+        }
+
+        .dica-macet {
+            background: #fff8e7;
+            border-left: 6px solid #ffb347;
+            padding: 14px 16px;
+            border-radius: 12px;
+            margin: 14px 0;
+        }
+
+        .tabela-regra {
+            background: #f0f5fe;
+            border-radius: 16px;
+            padding: 14px 16px;
+            margin: 12px 0;
+            border: 1px solid #dce6f0;
+            overflow-x: auto;
+        }
+
+        .tabela-regra table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        .tabela-regra th {
+            background: #1a2d5a;
+            color: white;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        .tabela-regra td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #dce6f0;
+        }
+
+        .tabela-regra tr:last-child td {
+            border-bottom: none;
+        }
+
+        .exemplo-box {
+            background: #e8f4f8;
+            border-radius: 16px;
+            padding: 14px 18px;
+            margin: 14px 0;
+            border-left: 6px solid #2a7faa;
+        }
+
+        .exemplo-box .en {
+            font-weight: 700;
+            color: #0f3a5a;
+        }
+
+        .exemplo-box .pt {
+            color: #2a5a7a;
+            font-style: italic;
+        }
+
+        .erro-comum {
+            background: #fff0ee;
+            border-left: 6px solid #d94a4a;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin: 12px 0;
+        }
+
+        .macete-box {
+            background: #e6f7e6;
+            border-radius: 16px;
+            padding: 14px 18px;
+            margin: 14px 0;
+            border: 2px dashed #2a8a4a;
+            text-align: center;
+            font-size: 1.05rem;
+        }
+
+        .macete-box .emoji-grande {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .cores-destaque {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .cores-destaque span {
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .cor-verde {
+            background: #d4edda;
+            color: #155724;
+        }
+        .cor-azul {
+            background: #cce5ff;
+            color: #004085;
+        }
+        .cor-amarelo {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .cor-vermelho {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .cor-roxo {
+            background: #e8d4f8;
+            color: #5a2a7a;
+        }
+
+        .simulado-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin: 12px 0 20px;
+        }
+
+        .btn-simulado {
+            background: #ffb347;
+            border: none;
+            border-radius: 60px;
+            padding: 18px 28px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #1a2d5a;
+            box-shadow: 0 8px 20px rgba(255, 179, 71, 0.4);
+            width: 100%;
+            max-width: 340px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: 0.15s;
+            cursor: pointer;
+            border: 2px solid #f0a83a;
+        }
+
+        .btn-simulado:active {
+            transform: scale(0.95);
+        }
+
+        .btn-simulado span {
+            font-size: 1.8rem;
+        }
+
+        .contador-simulado {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #4d627c;
+            background: #eef3fa;
+            padding: 6px 16px;
+            border-radius: 30px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .simulado-container {
+            background: white;
+            border-radius: 28px;
+            padding: 18px 16px;
+            margin: 18px 0 10px;
+            border: 1px solid #e4ebf3;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+        }
+
+        .pergunta-item {
+            padding: 16px 0;
+            border-bottom: 1px solid #edf2f8;
+        }
+
+        .pergunta-item:last-child {
+            border-bottom: none;
+        }
+
+        .pergunta-texto {
+            font-weight: 700;
+            color: #0f1a3a;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        .pergunta-texto .tag-materia {
+            font-size: 0.7rem;
+            background: #e8edf5;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #4d627c;
+            margin-left: 8px;
+        }
+
+        .opcoes {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding-left: 4px;
+        }
+
+        .opcao {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            font-size: 0.95rem;
+            color: #1f314a;
+            padding: 8px 12px;
+            border-radius: 30px;
+            background: #f8faff;
+            border: 1px solid #eef2f7;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .opcao:hover {
+            background: #eef3fa;
+        }
+
+        .opcao input[type="radio"] {
+            accent-color: #1a2d5a;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+
+        /* CORES DE FEEDBACK */
+        .opcao.correta {
+            background: #d4edda !important;
+            border-color: #28a745 !important;
+            border-width: 2px;
+        }
+
+        .opcao.errada {
+            background: #f8d7da !important;
+            border-color: #dc3545 !important;
+            border-width: 2px;
+        }
+
+        .opcao.mostrar-correta {
+            background: #d4edda !important;
+            border-color: #28a745 !important;
+            border-width: 2px;
+        }
+
+        .resultado-box {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin: 16px 0 8px;
+            text-align: center;
+            border: 2px solid #dee2e6;
+        }
+
+        .resultado-box .nota {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #1a2d5a;
+        }
+
+        .resultado-box .mensagem {
+            font-size: 1.1rem;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .resultado-box .mensagem.muito-bom {
+            color: #28a745;
+        }
+        .resultado-box .mensagem.bom {
+            color: #17a2b8;
+        }
+        .resultado-box .mensagem.regular {
+            color: #ffc107;
+        }
+        .resultado-box .mensagem.ruim {
+            color: #dc3545;
+        }
+
+        .btn-corrigir {
+            background: #28a745;
+            border: none;
+            color: white;
+            padding: 14px 18px;
+            border-radius: 40px;
+            font-weight: 700;
+            margin: 8px 0;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.15s;
+            font-size: 1rem;
+        }
+
+        .btn-corrigir:active {
+            opacity: 0.7;
+            transform: scale(0.97);
+        }
+
+        .gabarito-btn {
+            background: #1a2d5a;
+            border: none;
+            color: white;
+            padding: 14px 18px;
+            border-radius: 40px;
+            font-weight: 700;
+            margin: 12px 0 8px;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.15s;
+            font-size: 1rem;
+        }
+
+        .gabarito-btn:active {
+            opacity: 0.7;
+            transform: scale(0.97);
+        }
+
+        .gabarito-btn.secundario {
+            background: #6b7f99;
+        }
+
+        .footer {
+            margin-top: 24px;
+            font-size: 0.8rem;
+            color: #6b7f99;
+            text-align: center;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        @media (max-width: 420px) {
+            .btn-materia {
+                font-size: 0.8rem;
+                padding: 12px 6px;
+                min-width: 100px;
+            }
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            .explicacao-box {
+                padding: 18px 14px;
+            }
+            .resultado-box .nota {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1>📘 Aulão Inglês <small>8º ano · Revisão completa</small></h1>
+            <div class="subtitle">🇧🇷 Explicações em português · Macetes para memorizar</div>
+        </div>
+
+        <div class="materias-grid" id="materiasGrid">
+            <button class="btn-materia" data-materia="past">⏳ Past Continuous</button>
+            <button class="btn-materia" data-materia="transport">🚌 Transportes</button>
+            <button class="btn-materia" data-materia="phrasal">🔗 Phrasal Verbs</button>
+            <button class="btn-materia" data-materia="tag">❓ Tag Questions</button>
+            <button class="btn-materia" data-materia="would">🍽️ Would Like To</button>
+            <button class="btn-materia" data-materia="modal">⚡ Modal Verbs</button>
+        </div>
+
+        <div class="explicacao-box" id="explicacaoBox">
+            <h2 id="explicacaoTitulo">📖 Escolha um tópico</h2>
+            <div class="conteudo" id="explicacaoConteudo">
+                <p style="text-align: center; color: #4d627c; font-size: 1.1rem;">
+                    👆 Clique em qualquer matéria acima<br>
+                    para ver a explicação completa com <strong>macetes</strong>!
+                </p>
+                <div style="text-align: center; margin-top: 12px; font-size: 2.5rem;">🧠</div>
+                <p style="text-align: center; color: #6b7f99; margin-top: 8px;">
+                    Depois, role para baixo e faça os simulados
+                </p>
+            </div>
+        </div>
+
+        <div class="simulado-area">
+            <button class="btn-simulado" id="gerarSimuladoBtn"><span>📝</span> Gerar Simulado</button>
+            <span class="contador-simulado" id="contadorSimulado">🎯 Carregando perguntas...</span>
+        </div>
+
+        <div id="simuladoContainer" class="simulado-container hide">
+            <div id="simuladoRender"></div>
+            <button class="btn-corrigir" id="corrigirBtn">🔍 Corrigir Simulado</button>
+            <button class="gabarito-btn secundario" id="novoSimuladoBtn">🔄 Novo simulado</button>
+        </div>
+
+        <div class="footer">🧠 Estude com calma · Cada simulado é único · Mistura todas as matérias</div>
+    </div>
+
+    <script>
+        // ============================================================
+        // BANCO DE PERGUNTAS
+        // ============================================================
+        var todasPerguntas = [];
+
+        function adicionarPerguntas(lista, materia) {
+            for (var i = 0; i < lista.length; i++) {
+                todasPerguntas.push({
+                    p: lista[i].p,
+                    o: lista[i].o,
+                    c: lista[i].c,
+                    m: materia
+                });
+            }
+        }
+
+        var pastBase = [
+            { p: 'I ___ (read) a book when he arrived.', o: ['was reading', 'were reading', 'read', 'am reading'], c: 0 },
+            { p: 'They ___ (play) soccer at 5 PM yesterday.', o: ['was playing', 'were playing', 'played', 'play'], c: 1 },
+            { p: 'She ___ (study) for the test all night.', o: ['was studying', 'were studying', 'studied', 'study'], c: 0 },
+            { p: 'We ___ (watch) TV when the power went out.', o: ['was watching', 'were watching', 'watched', 'watch'],
+            c: 1 },
+            { p: 'He ___ (work) on his project at 10 AM.', o: ['was working', 'were working', 'worked', 'work'], c: 0 },
+            { p: 'The kids ___ (sleep) when I called.', o: ['was sleeping', 'were sleeping', 'slept', 'sleep'], c: 1 },
+            { p: 'It ___ (rain) heavily this morning.', o: ['was raining', 'were raining', 'rained', 'rain'], c: 0 },
+            { p: 'My parents ___ (cook) dinner when I arrived.', o: ['was cooking', 'were cooking', 'cooked', 'cook'],
+            c: 1 },
+            { p: 'The teacher ___ (explain) the rule when the bell rang.', o: ['was explaining', 'were explaining',
+                    'explained', 'explain'
+                ], c: 0 },
+            { p: 'I ___ (not do) my homework when you called.', o: ['was not doing', 'were not doing', 'did not do',
+                    'do not'
+                ], c: 0 },
+            { p: 'They ___ (travel) to London in 2019?', o: ['Was they travelling', 'Were they travelling',
+                    'Did they travel', 'Do they travel'
+                ], c: 1 },
+            { p: 'He ___ (run) in the park when he fell.', o: ['was running', 'were running', 'ran', 'run'], c: 0 },
+            { p: 'We ___ (wait) for the bus when it started to rain.', o: ['was waiting', 'were waiting', 'waited',
+                    'wait'
+                ], c: 1 },
+            { p: 'I ___ (make) lunch when the phone rang.', o: ['was making', 'were making', 'made', 'make'], c: 0 },
+            { p: 'The birds ___ (sing) outside my window.', o: ['was singing', 'were singing', 'sang', 'sing'], c: 1 }
+        ];
+
+        var transportBase = [
+            { p: 'Which means of transport travels on rails?', o: ['Bus', 'Train', 'Bicycle', 'Car'], c: 1 },
+            { p: 'You can take a ___ to cross the river.', o: ['ferry', 'plane', 'taxi', 'subway'], c: 0 },
+            { p: 'The fastest way to travel between countries is by ___.', o: ['ship', 'plane', 'bus', 'car'], c: 1 },
+            { p: 'A ___ has two wheels and you pedal it.', o: ['motorcycle', 'bicycle', 'scooter', 'skateboard'], c: 1 },
+            { p: 'In big cities, people often use the ___ to avoid traffic.', o: ['subway', 'bicycle', 'taxi', 'bus'],
+            c: 0 },
+            { p: 'A large ship that carries passengers is called a ___.', o: ['ferry', 'cruise ship', 'boat', 'yacht'],
+            c: 1 },
+            { p: 'You need a ticket to ride the ___.', o: ['bicycle', 'train', 'skateboard', 'walk'], c: 1 },
+            { p: 'The ___ is used for short distances in the city.', o: ['taxi', 'plane', 'train', 'ship'], c: 0 },
+            { p: 'Which of these is a means of air transport?', o: ['Helicopter', 'Subway', 'Ship', 'Truck'], c: 0 },
+            { p: 'A vehicle that carries many people and follows a route is a ___.', o: ['taxi', 'bus', 'bicycle', 'car'],
+            c: 1 }
+        ];
+
+        var phrasalBase = [
+            { p: 'What does "turn on" mean?', o: ['Ligar', 'Desligar', 'Aumentar', 'Diminuir'], c: 0 },
+            { p: 'To "give up" means to ___.', o: ['continuar', 'desistir', 'entregar', 'levantar'], c: 1 },
+            { p: 'If you "look after" someone, you ___.', o: ['procurar', 'cuidar', 'encontrar', 'ignorar'], c: 1 },
+            { p: '"Put off" means to ___.', o: ['colocar em', 'adiar', 'apagar', 'vestir'], c: 1 },
+            { p: 'What is the meaning of "pick up"?', o: ['pegar', 'deixar', 'escolher', 'levantar'], c: 0 },
+            { p: '"Run out of" means to ___.', o: ['esgotar', 'correr', 'sair', 'encontrar'], c: 0 },
+            { p: 'To "find out" something is to ___.', o: ['descobrir', 'perder', 'esquecer', 'procurar'], c: 0 },
+            { p: '"Get along" means to ___.', o: ['se dar bem', 'viajar', 'chegar', 'sair'], c: 0 },
+            { p: 'What does "take off" mean?', o: ['decolar', 'tirar', 'colocar', 'descer'], c: 0 },
+            { p: '"Break down" refers to a machine that ___.', o: ['quebra', 'funciona', 'liga', 'acelera'], c: 0 }
+        ];
+
+        var tagBase = [
+            { p: 'You are a student, ___?', o: ['arent you', 'are you', 'dont you', 'do you'], c: 0 },
+            { p: 'She can swim, ___?', o: ['can she', 'cant she', 'does she', 'doesnt she'], c: 1 },
+            { p: 'They will come, ___?', o: ['will they', 'wont they', 'dont they', 'do they'], c: 1 },
+            { p: 'Its raining, ___?', o: ['is it', 'isnt it', 'does it', 'doesnt it'], c: 1 },
+            { p: 'You dont eat meat, ___?', o: ['dont you', 'do you', 'are you', 'arent you'], c: 1 },
+            { p: 'We had a test, ___?', o: ['didnt we', 'did we', 'had we', 'hadnt we'], c: 0 },
+            { p: 'He speaks English, ___?', o: ['does he', 'doesnt he', 'is he', 'isnt he'], c: 1 },
+            { p: 'You were at home, ___?', o: ['werent you', 'were you', 'did you', 'didnt you'], c: 0 },
+            { p: 'I am late, ___?', o: ['arent I', 'am I', 'am not I', 'are I'], c: 0 },
+            { p: 'She has a car, ___?', o: ['has she', 'hasnt she', 'does she', 'doesnt she'], c: 3 }
+        ];
+
+        var wouldBase = [
+            { p: 'I ___ like to visit Paris.', o: ['would', 'will', 'should', 'could'], c: 0 },
+            { p: 'What ___ you like to drink?', o: ['would', 'will', 'do', 'can'], c: 0 },
+            { p: 'She ___ like to become a doctor.', o: ['would', 'will', 'can', 'may'], c: 0 },
+            { p: 'We ___ like to order pizza.', o: ['would', 'will', 'should', 'might'], c: 0 },
+            { p: '___ you like to join us?', o: ['Would', 'Will', 'Can', 'Do'], c: 0 },
+            { p: 'They ___ like to live near the beach.', o: ['would', 'will', 'could', 'shall'], c: 0 },
+            { p: 'He ___ like to buy a new phone.', o: ['would', 'will', 'must', 'might'], c: 0 },
+            { p: 'I ___ like to thank you for your help.', o: ['would', 'will', 'can', 'should'], c: 0 },
+            { p: '___ you like some coffee?', o: ['Would', 'Will', 'Can', 'May'], c: 0 },
+            { p: 'My parents ___ like to travel more.', o: ['would', 'will', 'could', 'might'], c: 0 }
+        ];
+
+        var modalBase = [
+            { p: 'You ___ wear a seatbelt. (obrigacao)', o: ['must', 'can', 'may', 'could'], c: 0 },
+            { p: 'She ___ play the piano very well. (habilidade)', o: ['can', 'must', 'should', 'may'], c: 0 },
+            { p: '___ I open the window? (permissao)', o: ['May', 'Must', 'Should', 'Will'], c: 0 },
+            { p: 'You ___ not smoke here. (proibicao)', o: ['must', 'may', 'can', 'could'], c: 0 },
+            { p: 'He ___ arrive late. (possibilidade)', o: ['might', 'must', 'should', 'will'], c: 0 },
+            { p: 'We ___ study more for the test. (conselho)', o: ['should', 'must', 'can', 'may'], c: 0 },
+            { p: '___ you help me with this? (pedido)', o: ['Could', 'Must', 'Should', 'Will'], c: 0 },
+            { p: 'It ___ rain later. (possibilidade)', o: ['may', 'must', 'should', 'will'], c: 0 },
+            { p: 'You ___ finish your homework. (obrigacao)', o: ['must', 'can', 'may', 'could'], c: 0 },
+            { p: 'They ___ speak three languages. (habilidade)', o: ['can', 'must', 'should', 'may'], c: 0 }
+        ];
+
+        adicionarPerguntas(pastBase, 'past');
+        adicionarPerguntas(transportBase, 'transport');
+        adicionarPerguntas(phrasalBase, 'phrasal');
+        adicionarPerguntas(tagBase, 'tag');
+        adicionarPerguntas(wouldBase, 'would');
+        adicionarPerguntas(modalBase, 'modal');
+
+        // Expande para 500
+        var baseSize = todasPerguntas.length;
+        var attempts = 0;
+        var maxAttempts = 10000;
+
+        function gerarVariacao(pergunta) {
+            var sujeitos = ['I', 'You', 'He', 'She', 'We', 'They'];
+            var novoTexto = pergunta.p;
+            for (var i = 0; i < sujeitos.length; i++) {
+                if (novoTexto.indexOf(sujeitos[i] + ' ') === 0) {
+                    var novoIndice = (i + 1) % sujeitos.length;
+                    novoTexto = novoTexto.replace(sujeitos[i] + ' ', sujeitos[novoIndice] + ' ');
+                    break;
+                }
+            }
+            if (novoTexto === pergunta.p) {
+                if (pergunta.p.indexOf('You ') === 0) {
+                    novoTexto = pergunta.p.replace('You ', 'I ');
+                } else if (pergunta.p.indexOf('I ') === 0) {
+                    novoTexto = pergunta.p.replace('I ', 'You ');
+                } else if (pergunta.p.indexOf('She ') === 0) {
+                    novoTexto = pergunta.p.replace('She ', 'He ');
+                } else if (pergunta.p.indexOf('He ') === 0) {
+                    novoTexto = pergunta.p.replace('He ', 'She ');
+                }
+            }
+            return {
+                p: novoTexto,
+                o: pergunta.o.slice(),
+                c: pergunta.c,
+                m: pergunta.m
+            };
+        }
+
+        while (todasPerguntas.length < 500 && attempts < maxAttempts) {
+            attempts++;
+            var idx = Math.floor(Math.random() * baseSize);
+            var original = todasPerguntas[idx];
+            var variacao = gerarVariacao(original);
+            var existe = false;
+            for (var j = 0; j < todasPerguntas.length; j++) {
+                if (todasPerguntas[j].p === variacao.p && todasPerguntas[j].m === variacao.m) {
+                    existe = true;
+                    break;
+                }
+            }
+            if (!existe && variacao.p !== original.p) {
+                todasPerguntas.push(variacao);
+            }
+        }
+
+        var extras = [
+            { p: 'What is the past continuous of "eat"?', o: ['was eating', 'were eating', 'ate', 'eaten'], c: 0,
+            m: 'past' },
+            { p: 'Which is a phrasal verb?', o: ['turn off', 'run fast', 'jump high', 'eat slowly'], c: 0,
+            m: 'phrasal' },
+            { p: 'Tag question: You like pizza, ___?', o: ['dont you', 'do you', 'arent you', 'are you'], c: 0,
+            m: 'tag' }
+        ];
+        for (var k = 0; k < extras.length && todasPerguntas.length < 500; k++) {
+            var existe = false;
+            for (var l = 0; l < todasPerguntas.length; l++) {
+                if (todasPerguntas[l].p === extras[k].p) { existe = true; break; }
+            }
+            if (!existe) {
+                todasPerguntas.push(extras[k]);
+            }
+        }
+
+        // ============================================================
+        // EXPLICAÇÕES
+        // ============================================================
+        var explicacoes = {
+            past: {
+                titulo: '⏳ Past Continuous (Passado Contínuo)',
+                html: '<div class="macete-box"><span class="emoji-grande">🧠</span><strong>"Eu estava fazendo algo quando..."</strong><br><span style="font-size:0.9rem;">Ação que estava em andamento no passado</span></div><p><strong>📌 Como formar:</strong></p><div class="tabela-regra"><table><tr><th>Sujeito</th><th>Verbo to be (passado)</th><th>Verbo + ING</th></tr><tr><td>I / He / She / It</td><td><strong>WAS</strong></td><td>playing / reading / studying</td></tr><tr><td>You / We / They</td><td><strong>WERE</strong></td><td>playing / reading / studying</td></tr></table></div><div class="dica-macet"><strong>🎯 MACETE:</strong> <em>"WAS para EU, ELE, ELA, ISSO / WERE para VOCÊ, NÓS, ELES"</em></div><div class="exemplo-box"><div class="en">📘 I <strong>was reading</strong> a book when he arrived.</div><div class="pt">🇧🇷 Eu <strong>estava lendo</strong> um livro quando ele chegou.</div><hr style="margin:8px 0;border:0;border-top:1px dashed #b0cce0;"><div class="en">📘 They <strong>were playing</strong> soccer at 5 PM.</div><div class="pt">🇧🇷 Eles <strong>estavam jogando</strong> futebol às 17h.</div></div><div class="erro-comum"><strong>⚠️ ERRO COMUM:</strong> Usar o passado simples quando deveria ser o contínuo.<br>❌ <em>I read a book when he arrived.</em><br>✅ <em>I was reading a book when he arrived.</em></div>'
+            },
+            transport: {
+                titulo: '🚌 Meios de Transporte',
+                html: '<div class="macete-box"><span class="emoji-grande">🧠</span><strong>"Como você vai?"</strong><br><span style="font-size:0.9rem;">Use <strong>BY</strong> + meio de transporte</span></div><div class="tabela-regra"><table><tr><th>Português</th><th>Inglês</th><th>Exemplo</th></tr><tr><td>ônibus</td><td><strong>bus</strong></td><td>I go to school <strong>by bus</strong>.</td></tr><tr><td>trem</td><td><strong>train</strong></td><td>We travel <strong>by train</strong>.</td></tr><tr><td>avião</td><td><strong>plane</strong></td><td>She goes <strong>by plane</strong>.</td></tr><tr><td>metrô</td><td><strong>subway</strong></td><td>They take the <strong>subway</strong>.</td></tr></table></div><div class="dica-macet"><strong>🎯 MACETE:</strong> <em>"BY + transporte SEM artigo"</em><br>✅ by car · by bus · by plane · by train</div>'
+            },
+            phrasal: {
+                titulo: '🔗 Phrasal Verbs',
+                html: '<div class="macete-box"><span class="emoji-grande">🧠</span><strong>"Verbo + preposição = novo significado"</strong></div><div class="tabela-regra"><table><tr><th>Phrasal Verb</th><th>Significado</th></tr><tr><td><strong>turn on</strong></td><td>ligar</td></tr><tr><td><strong>give up</strong></td><td>desistir</td></tr><tr><td><strong>look after</strong></td><td>cuidar</td></tr><tr><td><strong>put off</strong></td><td>adiar</td></tr><tr><td><strong>pick up</strong></td><td>pegar / buscar</td></tr><tr><td><strong>run out of</strong></td><td>acabar</td></tr><tr><td><strong>find out</strong></td><td>descobrir</td></tr><tr><td><strong>take off</strong></td><td>decolar</td></tr></table></div>'
+            },
+            tag: {
+                titulo: '❓ Tag Questions',
+                html: '<div class="macete-box"><span class="emoji-grande">🧠</span><strong>"Não é mesmo?"</strong></div><div class="tabela-regra"><table><tr><th>Frase</th><th>Tag</th><th>Exemplo</th></tr><tr><td>Positiva</td><td>Negativa</td><td>You are a student, <strong>arent you?</strong></td></tr><tr><td>Negativa</td><td>Positiva</td><td>You arent a student, <strong>are you?</strong></td></tr></table></div><div class="dica-macet"><strong>🎯 MACETE:</strong> <em>"Positivo + negativo = pergunta; Negativo + positivo = pergunta"</em></div>'
+            },
+            would: {
+                titulo: '🍽️ Would Like To',
+                html: '<div class="macete-box"><span class="emoji-grande">🧠</span><strong>"Gostaria de..." (forma educada)</strong></div><div class="tabela-regra"><table><tr><th>Sujeito</th><th>Would like</th><th>To + verbo</th></tr><tr><td>I / You / She / We / They</td><td><strong>would like</strong></td><td>to visit / to eat / to go</td></tr></table></div><div class="exemplo-box"><div class="en">📘 I <strong>would like to</strong> visit Paris.</div><div class="pt">🇧🇷 Eu <strong>gostaria de</strong> visitar Paris.</div></div><div class="erro-comum"><strong>⚠️ ERRO COMUM:</strong> Esquecer o <em>to</em>.<br>❌ <em>I would like visit Paris.</em><br>✅ <em>I would like <strong>to</strong> visit Paris.</em></div>'
+            },
+            modal: {
+                titulo: '⚡ Modal Verbs',
+                html: '<div class="macete-box"><span class="emoji-grande">🧠</span><strong>"Verbos que dão tom à frase"</strong></div><div class="tabela-regra"><table><tr><th>Modal</th><th>Significado</th><th>Exemplo</th></tr><tr><td><strong>CAN</strong></td><td>habilidade</td><td>I <strong>can</strong> swim.</td></tr><tr><td><strong>COULD</strong></td><td>pedido educado</td><td><strong>Could</strong> you help me?</td></tr><tr><td><strong>MAY</strong></td><td>permissão</td><td><strong>May</strong> I come in?</td></tr><tr><td><strong>MUST</strong></td><td>obrigação</td><td>You <strong>must</strong> study.</td></tr><tr><td><strong>SHOULD</strong></td><td>conselho</td><td>You <strong>should</strong> eat well.</td></tr></table></div><div class="dica-macet"><strong>🎯 MACETE:</strong> <em>"CAN = consigo, MUST = tenho que, SHOULD = deveria"</em></div><div class="erro-comum"><strong>⚠️ ERRO COMUM:</strong> Usar <em>to</em> depois do modal.<br>❌ <em>She can to play.</em><br>✅ <em>She can play.</em></div>'
+            }
+        };
+
+        // ============================================================
+        // UI
+        // ============================================================
+        var explicacaoTitulo = document.getElementById('explicacaoTitulo');
+        var explicacaoConteudo = document.getElementById('explicacaoConteudo');
+        var materiasBtns = document.querySelectorAll('.btn-materia');
+        var simuladoContainer = document.getElementById('simuladoContainer');
+        var simuladoRender = document.getElementById('simuladoRender');
+        var contador = document.getElementById('contadorSimulado');
+        var corrigirBtn = document.getElementById('corrigirBtn');
+
+        // MATÉRIAS
+        for (var i = 0; i < materiasBtns.length; i++) {
+            (function(idx) {
+                var btn = materiasBtns[idx];
+                btn.addEventListener('click', function() {
+                    var materia = this.getAttribute('data-materia');
+                    for (var j = 0; j < materiasBtns.length; j++) {
+                        materiasBtns[j].classList.remove('ativo');
+                    }
+                    this.classList.add('ativo');
+                    if (explicacoes[materia]) {
+                        explicacaoTitulo.textContent = explicacoes[materia].titulo;
+                        explicacaoConteudo.innerHTML = explicacoes[materia].html;
+                    }
+                    document.getElementById('explicacaoBox').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            })(i);
+        }
+
+        // ============================================================
+        // SIMULADO
+        // ============================================================
+        var perguntasAtuais = [];
+
+        function gerarSimuladoMisturado() {
+            var porMateria = {
+                past: [],
+                transport: [],
+                phrasal: [],
+                tag: [],
+                would: [],
+                modal: []
+            };
+
+            for (var i = 0; i < todasPerguntas.length; i++) {
+                var q = todasPerguntas[i];
+                if (porMateria[q.m]) {
+                    porMateria[q.m].push(q);
+                }
+            }
+
+            var selecionadas = [];
+            var materiasKeys = ['past', 'transport', 'phrasal', 'tag', 'would', 'modal'];
+
+            for (var j = 0; j < materiasKeys.length; j++) {
+                var lista = porMateria[materiasKeys[j]];
+                if (lista && lista.length > 0) {
+                    var shuffled = lista.slice();
+                    for (var k = shuffled.length - 1; k > 0; k--) {
+                        var r = Math.floor(Math.random() * (k + 1));
+                        var temp = shuffled[k];
+                        shuffled[k] = shuffled[r];
+                        shuffled[r] = temp;
+                    }
+                    var qtd = Math.floor(Math.random() * 2) + 3;
+                    if (qtd > shuffled.length) qtd = shuffled.length;
+                    for (var l = 0; l < qtd; l++) {
+                        selecionadas.push(shuffled[l]);
+                    }
+                }
+            }
+
+            while (selecionadas.length < 20) {
+                var restantes = [];
+                for (var m = 0; m < todasPerguntas.length; m++) {
+                    var encontrado = false;
+                    for (var n = 0; n < selecionadas.length; n++) {
+                        if (selecionadas[n] === todasPerguntas[m]) {
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if (!encontrado) restantes.push(todasPerguntas[m]);
+                }
+                if (restantes.length === 0) break;
+                var rand = Math.floor(Math.random() * restantes.length);
+                selecionadas.push(restantes[rand]);
+            }
+
+            for (var o = selecionadas.length - 1; o > 0; o--) {
+                var r2 = Math.floor(Math.random() * (o + 1));
+                var temp2 = selecionadas[o];
+                selecionadas[o] = selecionadas[r2];
+                selecionadas[r2] = temp2;
+            }
+
+            return selecionadas.slice(0, 20);
+        }
+
+        function renderizarSimulado(perguntas) {
+            perguntasAtuais = perguntas;
+            var html = '<div style="margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;">';
+            html += '<span style="font-weight:700;font-size:1.1rem;">📌 Simulado · 20 perguntas</span>';
+            html += '<span style="font-size:0.8rem;background:#eef3fa;padding:4px 12px;border-radius:20px;">📚 Todas as matérias</span>';
+            html += '</div>';
+
+            for (var i = 0; i < perguntas.length; i++) {
+                var p = perguntas[i];
+                var letras = ['A', 'B', 'C', 'D'];
+                var nomeMateria = {
+                    past: 'Past Continuous',
+                    transport: 'Transportes',
+                    phrasal: 'Phrasal Verbs',
+                    tag: 'Tag Questions',
+                    would: 'Would Like To',
+                    modal: 'Modal Verbs'
+                };
+                var materiaLabel = nomeMateria[p.m] || p.m;
+                html += '<div class="pergunta-item" data-pergunta="' + i + '">';
+                html += '<div class="pergunta-texto">' + (i + 1) + '. ' + p.p + ' <span class="tag-materia">' + materiaLabel +
+                    '</span></div>';
+                html += '<div class="opcoes" id="opcoes-' + i + '">';
+                for (var j = 0; j < p.o.length; j++) {
+                    html += '<label class="opcao" id="opcao-' + i + '-' + j + '">';
+                    html += '<input type="radio" name="q' + i + '" value="' + j + '"> ';
+                    html += letras[j] + '. ' + p.o[j];
+                    html += '</label>';
+                }
+                html += '</div>';
+                html += '</div>';
+            }
+
+            simuladoRender.innerHTML = html;
+            simuladoContainer.classList.remove('hide');
+
+            // Remove resultado anterior se existir
+            var resultadoAntigo = document.querySelector('.resultado-box');
+            if (resultadoAntigo) resultadoAntigo.remove();
+
+            // Mostra o botão corrigir
+            corrigirBtn.style.display = 'block';
+            corrigirBtn.textContent = '🔍 Corrigir Simulado';
+        }
+
+        // ============================================================
+        // CORREÇÃO AUTOMÁTICA
+        // ============================================================
+        function corrigirSimulado() {
+            var acertos = 0;
+            var total = perguntasAtuais.length;
+
+            for (var i = 0; i < total; i++) {
+                var opcoes = document.querySelectorAll('#opcoes-' + i + ' .opcao');
+                var selecionado = document.querySelector('input[name="q' + i + '"]:checked');
+                var correta = perguntasAtuais[i].c;
+
+                // Remove classes anteriores
+                for (var j = 0; j < opcoes.length; j++) {
+                    opcoes[j].classList.remove('correta', 'errada', 'mostrar-correta');
+                }
+
+                if (selecionado) {
+                    var escolha = parseInt(selecionado.value);
+                    if (escolha === correta) {
+                        // ACERTOU - marca só a correta em verde
+                        opcoes[correta].classList.add('correta');
+                        acertos++;
+                    } else {
+                        // ERROU - marca a escolhida em vermelho e a correta em verde
+                        opcoes[escolha].classList.add('errada');
+                        opcoes[correta].classList.add('mostrar-correta');
+                    }
+                } else {
+                    // NÃO RESPONDEU - mostra a correta em verde
+                    opcoes[correta].classList.add('mostrar-correta');
+                }
+            }
+
+            // Mostra resultado
+            var resultadoHtml = '<div class="resultado-box">';
+            resultadoHtml += '<div class="nota">' + acertos + '/' + total + '</div>';
+
+            var percentual = (acertos / total) * 100;
+            var mensagem = '';
+            var classe = '';
+
+            if (percentual >= 90) {
+                mensagem = '🌟 Excelente! Você é um gênio do inglês!';
+                classe = 'muito-bom';
+            } else if (percentual >= 70) {
+                mensagem = '👏 Muito bom! Continue praticando!';
+                classe = 'bom';
+            } else if (percentual >= 50) {
+                mensagem = '📚 Bom! Revise os tópicos que errou.';
+                classe = 'regular';
+            } else {
+                mensagem = '💪 Continue estudando! Você vai melhorar!';
+                classe = 'ruim';
+            }
+
+            resultadoHtml += '<div class="mensagem ' + classe + '">' + mensagem + '</div>';
+            resultadoHtml += '</div>';
+
+            // Remove resultado anterior e insere novo
+            var resultadoAntigo = document.querySelector('.resultado-box');
+            if (resultadoAntigo) resultadoAntigo.remove();
+
+            var container = document.getElementById('simuladoRender');
+            container.insertAdjacentHTML('beforeend', resultadoHtml);
+
+            // Muda o texto do botão
+            corrigirBtn.textContent = '✅ Já corrigido';
+            corrigirBtn.style.background = '#6c757d';
+            corrigirBtn.style.cursor = 'default';
+            corrigirBtn.disabled = true;
+        }
+
+        // ============================================================
+        // EVENTOS
+        // ============================================================
+        document.getElementById('gerarSimuladoBtn').addEventListener('click', function() {
+            var perguntas = gerarSimuladoMisturado();
+            renderizarSimulado(perguntas);
+            simuladoContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Reativa o botão corrigir
+            corrigirBtn.style.display = 'block';
+            corrigirBtn.textContent = '🔍 Corrigir Simulado';
+            corrigirBtn.style.background = '#28a745';
+            corrigirBtn.style.cursor = 'pointer';
+            corrigirBtn.disabled = false;
+        });
+
+        corrigirBtn.addEventListener('click', function() {
+            if (!this.disabled) {
+                corrigirSimulado();
+            }
+        });
+
+        document.getElementById('novoSimuladoBtn').addEventListener('click', function() {
+            var perguntas = gerarSimuladoMisturado();
+            renderizarSimulado(perguntas);
+            // Reativa o botão corrigir
+            corrigirBtn.style.display = 'block';
+            corrigirBtn.textContent = '🔍 Corrigir Simulado';
+            corrigirBtn.style.background = '#28a745';
+            corrigirBtn.style.cursor = 'pointer';
+            corrigirBtn.disabled = false;
+        });
+
+        // ============================================================
+        // INICIALIZAÇÃO
+        // ============================================================
+        contador.textContent = '🎯 ' + todasPerguntas.length + ' perguntas disponíveis';
+
+        document.querySelector('.btn-materia[data-materia="past"]').classList.add('ativo');
+        explicacaoTitulo.textContent = explicacoes.past.titulo;
+        explicacaoConteudo.innerHTML = explicacoes.past.html;
+    </script>
+</body>
+</html>
