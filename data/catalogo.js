@@ -54,13 +54,5 @@ window.CATALOGO_MATERIAS = [
         icone: '📜',
         cor: '#5a3a2a',
         arquivo: 'data/historia.js'
-    },
-    {
-        id: 'redacao',
-        nome: 'Redação',
-        descricao: 'Receita, Bula, Regras do Jogo, Manual de Instrução e Ortografia',
-        icone: '✍️',
-        cor: '#3a5a7a',
-        arquivo: 'data/redacao.js'
     }
 ];
